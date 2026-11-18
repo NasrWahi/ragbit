@@ -21,3 +21,19 @@ rag_agent = Agent(
     output_type=RagResponse,
 )
 
+@rag_agent.tool_plain
+def retrieve_top_document(query: str) -> str:
+    """
+    vector search to match closest document to the query
+    """
+    results = vector_db("articles").search(query=query).to_list()
+
+    return f"""
+    
+    Filename: {results[0]["filename"]},
+    
+    Filepath: {results[0]["filepath"]},
+
+    Content: {results[0]["content"]}
+    
+    """
