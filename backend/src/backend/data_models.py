@@ -1,7 +1,7 @@
 from lancedb.embeddings import get_registry
 from lancedb.pydantic import LanceModel, Vector
 from dotenv import load_dotenv
-from pydantic  import BaseModel
+from pydantic  import BaseModel, Field
 
 load_dotenv()
 
