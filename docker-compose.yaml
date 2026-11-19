@@ -4,9 +4,20 @@ services:
     build:
       context: . # this folder
       dockerfile: dockerfiles/backend.dockerfile
-      ports:
-        - "8000:8000"
+    ports:
+      - "8000:8000"
       # injects variables from .env into the container that we spin up
-      env_file:
-        - .env
-      image: backend:v1
+    env_file:
+      - .env
+    image: backend:v1
+
+  frontend:
+    container_name: frontend
+    build:
+      context: . # this folder
+      dockerfile: dockerfiles/frontend.dockerfile
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    image: frontend:v1

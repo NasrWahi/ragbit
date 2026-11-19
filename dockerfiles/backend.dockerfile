@@ -1,4 +1,4 @@
-FROM python:3.13-slim(last pushed 1 week ago)
+FROM python:3.13-slim
 
 # puts in app folder in the root and changes my directory to /app
 WORKDIR /app/
@@ -9,7 +9,7 @@ COPY backend backend
 # instead of installing a package -> keep structure as it is for the imports
 ENV PYTHONPATH=/app/backend
 
-# install uv
+# install uv 
 RUN pip install --no-cache-dir uv
 
 WORKDIR /app/backend/src/backend
@@ -18,4 +18,4 @@ WORKDIR /app/backend/src/backend
 RUN uv sync --no-dev
 
 # runs the api
-CMD ["uv", "run", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD [ "uv", "run", "uvicorn", "api:app", "--host" , "0.0.0.0", "--port", "8000"]
